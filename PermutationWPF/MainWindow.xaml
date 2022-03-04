@@ -1,0 +1,16 @@
+﻿<Window x:Class="PermutationWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PermutationWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <TextBlock TextWrapping="Wrap" Text="Datum" Margin="424,28,272,387"/>
+        <TextBox x:Name="savePath" HorizontalAlignment="Left" Margin="558,52,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Height="18"/>
+        <DatePicker x:Name="dateField" HorizontalAlignment="Left" Margin="558,23,0,0" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="424,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="104"><Run Language="de-de" Text="SpeicherOrt"/></TextBlock>
+
+    </Grid>
+</Window>
