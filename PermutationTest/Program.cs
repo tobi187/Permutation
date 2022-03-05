@@ -9,7 +9,7 @@ static List<Ebene> convertData(string[] input)
 {
     List<Ebene> ebenen = new List<Ebene>();
 
-    int ebenenCounter = 0;
+    int ebenenCounter = 3;
 
     foreach (var line in input)
     {
@@ -34,7 +34,7 @@ static List<Ebene> convertData(string[] input)
             tableCounter++;
         }
         ebenen.Add(ebene);
-        ebenenCounter++;
+        ebenenCounter--;
     }
 
     return ebenen;

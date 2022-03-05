@@ -12,4 +12,9 @@ namespace PermutationTest.Models
         public int Count{ get; set; }
         public List<Table> Tables = new List<Table>();
     }
+
+    internal class PermEbenen
+    {
+        public List<Ebene>
+    }
 }
