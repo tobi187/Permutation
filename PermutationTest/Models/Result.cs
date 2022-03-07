@@ -9,6 +9,16 @@ namespace PermutationTest.Models
     internal class Result
     {
         public List<Table> tables = new List<Table>();
-        internal Dictionary<int, int> workFlow = new Dictionary<int, int>();
+        public List<Dictionary<int, int>> workFlow = new List<Dictionary<int, int>>();
+
+        public void SortAllTables()
+        {
+            foreach (var table in tables)
+            {
+                table.SortNums();
+            }
+        }
     }
+
+
 }

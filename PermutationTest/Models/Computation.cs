@@ -8,53 +8,51 @@ namespace PermutationTest.Models
 {
     internal class Computation
     {
-        Computation(List<Ebene> data)
+        internal Computation(List<Ebene> data)
         {
             ebeneList = data;
             var tableAmount = ebeneList[0].Tables.Count;
             perms = GetPermutations(Enumerable.Range(1, tableAmount), tableAmount).ToList();
+            firstEbene = ebeneList[0];
+            firstEbene.SortAllTables();
         }
         List<Ebene> ebeneList;
         List<IEnumerable<int>> perms;
-        int amountSaved = 0;
-        int amountGes = 0;
+        Ebene firstEbene;
+        public int amountSaved = 0;
+        public int amountGes = 0;
 
-        public void doPermutation()
+        public Result DoComputation(List<IEnumerable<int>> history, IEnumerable<int> lastVal)
         {
-            int amountOfEbenen = ebeneList.Count;
-
-            var perms = GetPermutations(Enumerable.Range(1, amountOfEbenen), amountOfEbenen).ToList();
-
-         
-
-            for (int i = 1; i < ebeneList.Count; i++) { 
-                var ebene = ebeneList[i];
-                for (int p = 1; p < perms.Count; p++)
-                {
-                    //var permTable = new Ebene();
-                }
-            }
-        }
-
-        public void DoComputation()
-        {
-            var results = new List<Result>();
-            var obersteEbene = ebeneList[0];
-            foreach (var tr1 in perms)
+            var result = new Result()
             {
-                var currEbene2Tables = new List<Ebene>();
-                foreach (var t in tr1)
+                tables = firstEbene.Tables
+            };
+            var lastTableOrder = Enumerable.Range(1, firstEbene.Tables.Count);
+            
+            history.Add(lastVal);
+
+            var misery = history.ToList();
+
+            for (var ebeneCounter = 1; ebeneCounter < misery.Count + 1; ebeneCounter++)
+            {
+                var h = misery[ebeneCounter - 1];
+                var currEbene = ebeneList[ebeneCounter];
+                var tableA = lastTableOrder.Zip(h, (l, c) => 
+                        new { l, c }).ToDictionary(item => item.l, item => item.c);
+                result.tables = currEbene.AddEbene(result.tables);
+                if (ebeneCounter != misery.Count)
+                    result.SortAllTables();
+                result.workFlow.Add(tableA);
+                foreach (var z in result.tables)
                 {
-
-                }
-
-
-                var res = new Result();
-                foreach (var tr2 in perms)
-                {
-                    res.workFlow.Add(tr1, tr2);
+                    Console.WriteLine("RandomNums: " + "[{0}]", string.Join(", ", z.RandomNums));
+                    Console.WriteLine("InitalOrder: " + "[{0}]", string.Join(", ", z.InitalOrder));
+                    Console.WriteLine("Values: " + "[{0}]", string.Join(", ", z.Values));
                 }
             }
+
+            return result;
         }
 
         public IEnumerable<IEnumerable<int>> GetPermutations(IEnumerable<int> list, int length)
@@ -64,6 +62,29 @@ namespace PermutationTest.Models
             return GetPermutations(list, length - 1)
                 .SelectMany(t => list.Where(e => !t.Contains(e)),
                     (t1, t2) => t1.Concat(new int[] { t2 }));
+        }
+
+        public List<Result> RecursivePerm(int am, List<IEnumerable<int>> history, List<Result> results)
+        {
+            if (am == 0) {
+                Console.WriteLine("History: " + history.Count);
+                var currPerm = history.ToList();
+                history.Clear();
+                foreach (var i in perms)
+                {
+                    results.Add(DoComputation(currPerm.ToList(), i));
+                    amountGes++;
+                }
+            }
+            else
+            {
+                foreach (var i in perms)
+                {
+                    history.Add(i);
+                    RecursivePerm(am - 1, history, results);
+                }
+            }
+            return results;
         }
 
     }

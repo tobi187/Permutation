@@ -43,12 +43,22 @@ static List<Ebene> convertData(string[] input)
 
 var ebenen = convertData(file);
 
-var result = new Ebene();
+Computation c = new Computation(ebenen);
 
-foreach (var ebene in ebenen)
+var o = c.RecursivePerm(ebenen.Count - 2, new List<IEnumerable<int>>(), new List<Result>());
+
+
+foreach (var u in o)
 {
-    foreach (var table in ebene.Tables)
-    {
+    Console.WriteLine(u.workFlow);
+}
 
+Console.WriteLine(c.amountGes);
+
+foreach (var f in o[0].tables)
+{
+    foreach(var g in f.Values)
+    {
+        Console.Write(g + ", ");
     }
 }

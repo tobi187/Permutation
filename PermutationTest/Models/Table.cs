@@ -15,13 +15,11 @@ namespace PermutationTest.Models
 
     //grün orange gelb rot
 
-        public void SortRanNums()
+        public void SortNums()
         {
-            var combined = InitalOrder!.Zip(RandomNums!, (f, s) => new {f, s})
-                .ToDictionary(item => item.f, item => item.s);
-            combined.OrderBy(x => x.Value);
-            InitalOrder = combined.Keys.ToArray();
-            RandomNums = combined.Values.ToArray(); 
+            Array.Sort(RandomNums.ToArray(), Values);
+            Array.Sort(RandomNums.ToArray(), InitalOrder);
+            Array.Sort(RandomNums);
         }
     }
 }
