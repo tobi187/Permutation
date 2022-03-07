@@ -1,0 +1,4 @@
+﻿- Anzahl Zahlen immer nur 1 bis Länge?
+- Format in txt muss so sein ?
+- OrdnerNamen müssen so sein ? ()
+- testCases

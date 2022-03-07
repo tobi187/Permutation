@@ -25,7 +25,8 @@ namespace PermutationTest.Models
             var newTableOrder = new List<Table>();
             foreach (var i in newOrder)
             {
-                newTableOrder.Add(Tables[i]);
+                // check this again
+                newTableOrder.Add(Tables[i - 1]);
             }
             Tables = newTableOrder;
         }
@@ -40,8 +41,8 @@ namespace PermutationTest.Models
                     new Table() 
                     { 
                         Values = newVals, 
-                        InitalOrder= toAdd[i].InitalOrder,
-                        RandomNums=toAdd[i].RandomNums
+                        InitalOrder = Tables[i].InitalOrder,
+                        RandomNums = Tables[i].RandomNums
                     });
             }
             return newValues;
