@@ -28,5 +28,9 @@ namespace PermutationWPF
             savePath.SelectedText = @$"C:\{dt}";
         }
 
+private void ChooseFolder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

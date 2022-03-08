@@ -11,6 +11,14 @@
         <TextBox x:Name="savePath" HorizontalAlignment="Left" Margin="558,52,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Height="18"/>
         <DatePicker x:Name="dateField" HorizontalAlignment="Left" Margin="558,23,0,0" Text="TextBox" VerticalAlignment="Top" Width="120"/>
         <TextBlock HorizontalAlignment="Left" Margin="424,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="18" Width="104"><Run Language="de-de" Text="SpeicherOrt"/></TextBlock>
+        <Button x:Name="ChooseFolder" Click="ChooseFolder_Click" Content="Ordner" HorizontalAlignment="Left" Margin="698,50,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="172,20,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="96"/>
+        <TextBox HorizontalAlignment="Left" Margin="172,43,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="96"/>
+        <TextBox HorizontalAlignment="Left" Margin="172,66,0,0" TextWrapping="Wrap" Text="7" VerticalAlignment="Top" Width="96"/>
+        <TextBlock HorizontalAlignment="Left" Margin="38,19,0,0" TextWrapping="Wrap" Text="Anzahl der Ebenen" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="38,43,0,0" TextWrapping="Wrap" Text="Anzahl der Tabellen" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="38,66,0,0" TextWrapping="Wrap" Text="Anzahl der Zahlen" VerticalAlignment="Top"/>
+        <Button Content="Generate" HorizontalAlignment="Left" Margin="303,60,0,0" VerticalAlignment="Top" Width="83" Height="29"/>
 
     </Grid>
 </Window>
