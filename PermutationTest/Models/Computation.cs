@@ -38,18 +38,13 @@ namespace PermutationTest.Models
             {
                 var h = misery[ebeneCounter - 1];
                 var currEbene = ebeneList[ebeneCounter];
+                currEbene.ReOrderTables(h);
                 var tableA = lastTableOrder.Zip(h, (l, c) => 
                         new { l, c }).ToDictionary(item => item.l, item => item.c);
                 result.tables = currEbene.AddEbene(result.tables);
                 if (ebeneCounter != misery.Count)
                     result.SortAllTables();
                 result.workFlow.Add(tableA);
-                foreach (var z in result.tables)
-                {
-                    Console.WriteLine("RandomNums: " + "[{0}]", string.Join(", ", z.RandomNums));
-                    Console.WriteLine("InitalOrder: " + "[{0}]", string.Join(", ", z.InitalOrder));
-                    Console.WriteLine("Values: " + "[{0}]", string.Join(", ", z.Values));
-                }
             }
 
             return result;
@@ -67,7 +62,6 @@ namespace PermutationTest.Models
         public List<Result> RecursivePerm(int am, List<IEnumerable<int>> history, List<Result> results)
         {
             if (am == 0) {
-                Console.WriteLine("History: " + history.Count);
                 var currPerm = history.ToList();
                 history.Clear();
                 foreach (var i in perms)

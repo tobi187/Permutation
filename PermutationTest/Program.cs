@@ -26,8 +26,9 @@ static List<Ebene> convertData(string[] input)
             {
                 Count = tableCounter,
                 InitalOrder = Enumerable.Range(0, values.Length).ToArray(),
-                RandomNums = ranNums,
-                Values = values
+                // ohne array spaß wenn man 1 table ordert ordern die anderen mit vf
+                RandomNums = ranNums.ToArray(),
+                Values = values.ToArray()
             };
             ebene.Count = ebenenCounter;
             ebene.Tables.Add(table);
@@ -48,17 +49,53 @@ Computation c = new Computation(ebenen);
 var o = c.RecursivePerm(ebenen.Count - 2, new List<IEnumerable<int>>(), new List<Result>());
 
 
-foreach (var u in o)
+static string[] Save(Result res)
 {
-    Console.WriteLine(u.workFlow);
+    var op = new List<string>()
+    {
+        $"zufällig: {string.Join(", ", res.tables[0].RandomNums)} | {string.Join(", ", res.tables[1].RandomNums)} | {string.Join(", ", res.tables[2].RandomNums)}",
+        $"werte:    {string.Join(", ", res.tables[0].Values)} | {string.Join(", ", res.tables[1].Values)} | {string.Join(", ", res.tables[2].Values)}",
+        ""
+    };
+
+    foreach (var t in res.workFlow)
+    {
+        foreach (var v in t.Keys)
+        {
+            op.Add($"Tabelle {v} auf Tabelle {t[v]}");
+        }
+        op.Add("");
+    }
+
+    op.Add("______________________________________________________________________");
+    op.Add("");
+
+    return op.ToArray();
 }
 
-Console.WriteLine(c.amountGes);
+var w = o.Select(Save);
 
-foreach (var f in o[0].tables)
+var weirdShit = new List<string>()
 {
-    foreach(var g in f.Values)
+    $"Anzahl Ebenen: {ebenen.Count} | Anzahl Tabellen: {ebenen[0].Tables.Count} | Anzahl Ergebnisse: {o.Count}",
+    $"_____________________________________________________________________________",
+    ""
+};
+
+foreach (var d in w)
+{
+    foreach (var e in d)
     {
-        Console.Write(g + ", ");
+        weirdShit.Add(e);
     }
 }
+
+File.WriteAllLines(@"C:\Users\fisch\Desktop\testOpFirstTry.txt", weirdShit.ToArray());
+
+
+
+var b = o.Select(x => x.workFlow);
+
+var m = b.Distinct();
+
+Console.WriteLine(m.Count());

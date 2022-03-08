@@ -1,0 +1,6 @@
+﻿- Anzahl Zahlen immer nur 1 bis Länge?
+- Format in txt muss so sein ?
+- OrdnerNamen müssen so sein ? ()
+- testCases
+- 1 Ebene Input
+- Pause / Stop wichtig?
