@@ -2,3 +2,5 @@
 - Format in txt muss so sein ?
 - OrdnerNamen müssen so sein ? ()
 - testCases
+- 1 Ebene Input
+- Pause / Stop wichtig?
